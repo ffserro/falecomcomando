@@ -12,10 +12,6 @@ user = st.secrets['USUARIO']
 password = st.secrets['SENHA']
 server = smtplib.SMTP(host, port)
 
-server.ehlo()
-server.starttls()
-server.login(user, password)
-
 from io import BytesIO
 import base64
 
@@ -39,9 +35,15 @@ if st.button('Enviar'):
     else:
         message = f"Sugestão anônima em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
 
+    server.ehlo()
+    server.starttls()
+    server.login(user, password)
     email_msg = MIMEMultipart()
     email_msg['From'] = user
     email_msg['To'] = 'serro@marinha.mil.br'
     email_msg['Subject'] = 'Fale com o comando - Sugestão'
 
     email_msg.attach(MIMEText(message, 'plain'))
+
+    server.sendmail(msg['From'], msg['To'], msg.as_string())
+    server.quit()
