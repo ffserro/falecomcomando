@@ -23,27 +23,35 @@ st.markdown(f"<img style='display: block; margin-left: auto; margin-right: auto;
 
 st.markdown("<h1 style='text-align: center;'>CAIXA DE SUGESTÕES DO MAKÃO</h1>", unsafe_allow_html=True)
 
-st.write('Use esta ferramenta para fazer sugestões de melhoria para o convívio e o cumprimento da missão do Grupamento.')
 
-nome_militar = st.text_input('Caso você deseje se identificar, digite o seu nome abaixo:')
+if 'finalizado' not in st.session_state:
+    st.write('Use esta ferramenta para fazer sugestões de melhoria para o convívio e o cumprimento da missão do Grupamento.')
 
-sugestao = st.text_area('Deixe aqui a sua sugestão: ')
+    nome_militar = st.text_input('Caso você deseje se identificar, digite o seu nome abaixo:')
 
-if st.button('Enviar'):
-    if nome_militar:
-        message = f"Sugestão de {nome_militar} em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
-    else:
-        message = f"Sugestão anônima em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
+    sugestao = st.text_area('Deixe aqui a sua sugestão: ')
 
-    server.ehlo()
-    server.starttls()
-    server.login(user, password)
-    email_msg = MIMEMultipart()
-    email_msg['From'] = user
-    email_msg['To'] = 'serro@marinha.mil.br'
-    email_msg['Subject'] = 'Fale com o comando - Sugestão'
+    if st.button('Enviar'):
+        if nome_militar:
+            message = f"Sugestão de {nome_militar} em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
+        else:
+            message = f"Sugestão anônima em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
 
-    email_msg.attach(MIMEText(message, 'plain'))
+        server.ehlo()
+        server.starttls()
+        server.login(user, password)
+        email_msg = MIMEMultipart()
+        email_msg['From'] = user
+        email_msg['To'] = 'serro@marinha.mil.br'
+        email_msg['Subject'] = 'Fale com o comando - Sugestão'
 
-    server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
-    server.quit()
+        email_msg.attach(MIMEText(message, 'plain'))
+
+        server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
+        server.quit()
+
+        st.session_state['finalizado'] = 1
+
+        st.experimental_rerun()
+else:
+    st.markdown('#Obrigado pela contribuição!')
