@@ -34,7 +34,6 @@ nome_militar = st.text_input('Caso você deseje se identificar, digite o seu nom
 sugestao = st.text_area('Deixe aqui a sua sugestão: ')
 
 if st.button('Enviar'):
-
     if nome_militar:
         message = f'Sugestão de {nome_militar} em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}'
     else:
