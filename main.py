@@ -45,5 +45,5 @@ if st.button('Enviar'):
 
     email_msg.attach(MIMEText(message, 'plain'))
 
-    server.sendmail(msg['From'], msg['To'], msg.as_string())
+    server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
     server.quit()
