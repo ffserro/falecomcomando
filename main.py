@@ -54,4 +54,4 @@ if 'finalizado' not in st.session_state:
 
         st.experimental_rerun()
 else:
-    st.markdown('#Obrigado pela contribuição!')
+    st.markdown('# Obrigado pela contribuição!')
