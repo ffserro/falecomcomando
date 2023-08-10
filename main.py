@@ -13,3 +13,5 @@ st.markdown("<h1 style='text-align: center;'>CAIXA DE SUGESTÕES DO MAKÃO</h1>"
 st.write('Use esta ferramenta para fazer sugestões de melhoria para o convívio e o cumprimento da missão do Grupamento.')
 
 nome_militar = st.text_input('Caso você deseje se identificar, digite o seu nome abaixo:')
+
+sugestao = st.text_area('Deixe aqui a sua sugestão: ')
