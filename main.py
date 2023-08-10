@@ -35,9 +35,9 @@ sugestao = st.text_area('Deixe aqui a sua sugestão: ')
 
 if st.button('Enviar'):
     if nome_militar:
-        message = f'Sugestão de {nome_militar} em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}'
+        message = f"Sugestão de {nome_militar} em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
     else:
-        message = f'Sugestão anônima em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}'
+        message = f"Sugestão anônima em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
 
     email_msg = MIMEMultipart()
     email_msg['From'] = user
