@@ -1,4 +1,5 @@
 import streamlit as st
+import base64
 
 file_ = open("logo.png", "rb")
 contents = file_.read()
