@@ -11,3 +11,5 @@ st.markdown(f"<img style='display: block; margin-left: auto; margin-right: auto;
 st.markdown("<h1 style='text-align: center;'>CAIXA DE SUGESTÕES DO MAKÃO</h1>", unsafe_allow_html=True)
 
 st.write('Use esta ferramenta para fazer sugestões de melhoria para o convívio e o cumprimento da missão do Grupamento.')
+
+st.text_input('Caso você deseje se identificar, digite o seu nome abaixo:', value="", max_chars=None, key=None, type="default", help=None, autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility="visible")
