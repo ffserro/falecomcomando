@@ -1,7 +1,1 @@
 streamlit
-holidays
-matplotlib
-openpyxl
-numpy
-pandas
-streamlit-aggrid
