@@ -1,6 +1,6 @@
 import streamlit as st
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -33,9 +33,9 @@ if 'finalizado' not in st.session_state:
 
     if st.button('Enviar'):
         if nome_militar:
-            message = f"Sugestão de {nome_militar} em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
+            message = f"Sugestão de {nome_militar} em {(datetime.now() + timedelta(hours=-3)).strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
         else:
-            message = f"Sugestão anônima em {datetime.now().strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
+            message = f"Sugestão anônima em {(datetime.now() + timedelta(hours=-3)).strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
 
         server.ehlo()
         server.starttls()
@@ -52,6 +52,6 @@ if 'finalizado' not in st.session_state:
 
         st.session_state['finalizado'] = 1
 
-        st.experimental_rerun()
+        st.rerun()
 else:
     st.markdown('# Obrigado pela contribuição!')
