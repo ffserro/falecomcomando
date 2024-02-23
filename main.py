@@ -41,7 +41,7 @@ if 'finalizado' not in st.session_state:
         server.starttls()
         server.login(user, password)
 
-        for recipient in ['serro@marinha.mil.br', 'jose.alfredo@marinha.mil.br']:
+        for recipient in ['serro@marinha.mil.br', 'jose.alfredo@marinha.mil.br', 'bernardo.dias@marinha.mil.br']:
             email_msg = MIMEMultipart()
             email_msg['From'] = user
             email_msg['To'] = recipient
