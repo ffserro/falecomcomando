@@ -42,7 +42,7 @@ if 'finalizado' not in st.session_state:
         server.login(user, password)
         email_msg = MIMEMultipart()
         email_msg['From'] = user
-        email_msg['To'] = ['serro@marinha.mil.br', 'jose.alfredo@marinha.mil.br']
+        email_msg['To'] = ['serro@marinha.mil.br', 'jose.alfredo@marinha.mil.br', 'ffserro@gmail.com']
         email_msg['Subject'] = 'Fale com o comando - Sugestão'
 
         email_msg.attach(MIMEText(message, 'plain'))
