@@ -37,17 +37,19 @@ if 'finalizado' not in st.session_state:
         else:
             message = f"Sugestão anônima em {(datetime.now() + timedelta(hours=-3)).strftime('%d/%m/%Y, às %H:%M:%S')}: \n\n{sugestao}"
 
-        server.ehlo()
-        server.starttls()
-        server.login(user, password)
-        email_msg = MIMEMultipart()
-        email_msg['From'] = user
-        email_msg['To'] = ['serro@marinha.mil.br', 'jose.alfredo@marinha.mil.br', 'ffserro@gmail.com']
-        email_msg['Subject'] = 'Fale com o comando - Sugestão'
+        for recipient in ['serro@marinha.mil.br', 'jose.alfredo@marinha.mil.br', 'ffserro@gmail.com']:
+            server.ehlo()
+            server.starttls()
+            server.login(user, password)
+            email_msg = MIMEMultipart()
+            email_msg['From'] = user
+            email_msg['To'] = recipient
+            email_msg['Subject'] = 'Fale com o comando - Sugestão'
 
-        email_msg.attach(MIMEText(message, 'plain'))
+            email_msg.attach(MIMEText(message, 'plain'))
 
-        server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
+            server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
+        
         server.quit()
 
         st.session_state['finalizado'] = 1
