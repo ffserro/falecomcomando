@@ -7,10 +7,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 host = 'smtp-mail.outlook.com'
-port = 587
+# port = 587
 user = st.secrets['USUARIO']
 password = st.secrets['SENHA']
-server = smtplib.SMTP(host, port)
+server = smtplib.SMTP(host) #, port)
 
 from io import BytesIO
 import base64
